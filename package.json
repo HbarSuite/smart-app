@@ -33,7 +33,7 @@
     "@hsuite/smart-ledgers": "^2.0.3",
     "@hsuite/smart-network-types": "^2.0.3",
     "@hsuite/smart-transaction-types": "^2.0.2",
-    "@hsuite/smartnode-sdk": "^2.1.5",
+    "@hsuite/smartnode-sdk": "^2.1.6",
     "@hsuite/subscriptions": "^2.1.7",
     "@hsuite/subscriptions-types": "^2.1.3",
     "@hsuite/throttler": "^2.0.9",
