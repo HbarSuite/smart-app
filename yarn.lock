@@ -974,10 +974,10 @@
   dependencies:
     "@hsuite/nestjs-swagger" "^1.0.3"
 
-"@hsuite/subscriptions@^2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@hsuite/subscriptions/-/subscriptions-2.1.7.tgz#0e3682e64b1db703fc2a8d49ead2eef0789fecc0"
-  integrity sha512-GXzCdl2pw1F+MFXUXOMzMExlmxtumtsn0TFtAbmYkkUw1IGRNGmqXDOvCj8TRttEtBJQFbYtx9DtDIAhwCF91Q==
+"@hsuite/subscriptions@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@hsuite/subscriptions/-/subscriptions-2.1.8.tgz#940744795c66c1ee8c80995b699b7e820f6a21f7"
+  integrity sha512-LM/qaHKD5Q4qh3sSS1EGb++6f0/+TxPR3hL09tYN7Eh2D8rs5rVR1wBrgFg6ABCEQqQj3fXtYbooOGrtVdk5SQ==
   dependencies:
     "@hsuite/nestjs-swagger" "^1.0.3"
 
