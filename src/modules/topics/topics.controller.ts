@@ -17,7 +17,8 @@ import {
   ApiParam, 
   ApiOkResponse, 
   ApiBadRequestResponse, 
-  ApiNotFoundResponse 
+  ApiNotFoundResponse,
+  ApiQuery
 } from '@nestjs/swagger';
 
 /**
@@ -177,10 +178,41 @@ export class TopicsController {
     summary: 'Get topic messages',
     description: 'Retrieves messages from a specific HCS topic'
   })
-  @ApiBody({
-    type: Object,
+  @ApiParam({
+    name: 'topicId',
+    type: String,
     required: true,
-    description: 'Message retrieval parameters including topic ID and range'
+    description: 'The HCS topic ID in the format 0.0.12345'
+  })
+  @ApiQuery({
+    name: 'encoding',
+    type: String,
+    required: false,
+    description: 'Message encoding format (e.g., utf-8, base64)'
+  })
+  @ApiQuery({
+    name: 'limit',
+    type: Number,
+    required: false,
+    description: 'Maximum number of messages to retrieve'
+  })
+  @ApiQuery({
+    name: 'order',
+    type: String,
+    required: false,
+    description: 'Sort order for messages (asc/desc)'
+  })
+  @ApiQuery({
+    name: 'sequenceNumber',
+    type: Number,
+    required: false,
+    description: 'Starting sequence number for message retrieval'
+  })
+  @ApiQuery({
+    name: 'timestamp',
+    type: String,
+    required: false,
+    description: 'Starting timestamp for message retrieval'
   })
   @ApiOkResponse({
     type: Array,
@@ -192,9 +224,9 @@ export class TopicsController {
   @ApiBadRequestResponse({
     description: 'Invalid topic ID or network error'
   })
-  @Post('messages')
+  @Get('messages/:topicId')
   async getTopicMessages(
-    @Param('topic') topic: string,
+    @Param('topicId') topicId: string,
     @Query('encoding') encoding?: string,
     @Query('limit') limit?: number,
     @Query('order') order?: string,
@@ -203,7 +235,7 @@ export class TopicsController {
   ): Promise<Hashgraph.Restful.HCS.Message.Entity[]> {
     try {
       return await this.topicsService.getTopicMessages(
-        topic,
+        topicId,
         encoding,
         limit,
         order,

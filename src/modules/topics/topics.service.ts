@@ -185,11 +185,17 @@ export class TopicsService implements OnModuleInit {
    */
   async submitMessage(
     topicId: string,
-    params: IHashgraph.ILedger.IHCS.ITopic.IMessage.ISubmit
+    params: Omit<IHashgraph.ILedger.IHCS.ITopic.IMessage.ISubmit, 'signature'>
   ): Promise<string> {
     try {
+      let bytes = new Uint8Array(Buffer.from(JSON.stringify(params.message)));
+      const signature = PrivateKey.fromString(this.operator.privateKey).sign(bytes);
+
       // Generate transaction bytes for submitting a message
-      const submitMsgTxBytes = await this.smartNodeSdkService.sdk.hashgraph.hcs.submitMessage(topicId, params);
+      const submitMsgTxBytes = await this.smartNodeSdkService.sdk.hashgraph.hcs.submitMessage(topicId, {
+        ...params,
+        signature: signature
+      });
       
       // Convert bytes to transaction object
       const submitMsgTx = Transaction.fromBytes(

@@ -37,7 +37,7 @@ export default registerAs('subscription', (): ISubscription.IConfig.IOptions => 
      * Master switch to enable/disable the subscription module functionality
      * @type {boolean}
      */
-    enabled: true,
+    enabled: false,
 
     /**
      * Configuration for subscription token issuance and management
